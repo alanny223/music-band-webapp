@@ -1,0 +1,9 @@
+
+        .menu-open {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .menu-closed {
+            transform: translateY(-100%);
+            opacity: 0;
+        }

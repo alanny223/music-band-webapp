@@ -1,0 +1,182 @@
+/* ==========================================================================
+   Event Card Hover Effects
+   ========================================================================== */
+/* Gradient Animation */
+.bg-gradient-animate {
+    background: linear-gradient(45deg, #ffffff, #f3f4f6, #ffffff);
+    background-size: 200% 200%;
+    animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+/* Button Hover Effect */
+.services-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(115deg,
+        transparent 0%,
+        transparent 25%,
+        rgba(255,255,255,0.2) 25%,
+        rgba(255,255,255,0.2) 50%,
+        transparent 50%,
+        transparent 75%,
+        rgba(255,255,255,0.2) 75%,
+        rgba(255,255,255,0.2) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease-out;
+}
+
+.services-button:hover::after {
+    transform: translateX(0);
+}
+
+/* Card transitions */
+.event-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+/* Floating Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Floating Elements */
+@keyframes floating {
+    0% { transform: translate(0, 0px); }
+    50% { transform: translate(0, 15px); }
+    100% { transform: translate(0, -0px); }
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* Fade In */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Slide Up */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+
+/* Features Section Styles */
+.feature-card {
+    transition: all 0.3s ease-out;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Gradient Animation */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.bg-gradient-animate {
+    background-size: 200% 200%;
+    animation: gradientFlow 15s ease infinite;
+}
+
+/* Button Hover Effect */
+.services-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.services-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(115deg,
+        transparent 0%,
+        transparent 25%,
+        rgba(255,255,255,0.2) 25%,
+        rgba(255,255,255,0.2) 50%,
+        transparent 50%,
+        transparent 75%,
+        rgba(255,255,255,0.2) 75%,
+        rgba(255,255,255,0.2) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease-out;
+}
+
+.services-button:hover::after {
+    transform: translateX(0);
+}
+
+/* Card Shadow Animation */
+.feature-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+}
+
+/* Icon Glow Effect */
+.feature-card:hover .w-14 {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+}

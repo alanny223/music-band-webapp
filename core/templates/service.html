@@ -1,0 +1,408 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <style>
+        .service-card {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .floating-bg {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .custom-shadow {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+
+    <section class="relative min-h-screen py-20 bg-gray-50 overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="floating-bg absolute w-[600px] h-[600px] bg-blue-200/20 rounded-full blur-3xl -top-32 -left-32"></div>
+            <div class="floating-bg absolute w-[600px] h-[600px] bg-purple-200/20 rounded-full blur-3xl -bottom-32 -right-32" style="animation-delay: -4s"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Header Section -->
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <h2 class="gradient-text text-6xl md:text-7xl font-bold mb-6" data-aos="zoom-in">
+                    Our Services
+                </h2>
+                <p class="text-gray-600 text-xl" data-aos="fade-up" data-aos-delay="200">
+                    From electrifying performances to professional music production, we bring your musical dreams to life.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Live Performances -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-full overflow-hidden rounded-3xl bg-white custom-shadow p-1">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-50"></div>
+                        <div class="relative p-8 h-full">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 hover-scale">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Live Performances</h3>
+                            <p class="text-gray-600 mb-6">Experience our electrifying live shows, perfect for:</p>
+                            <ul class="text-gray-600 mb-8 space-y-2">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Corporate Events
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Weddings
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Music Festivals
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors duration-300 group">
+                                Book Now
+                                <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music Production -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-full overflow-hidden rounded-3xl bg-white custom-shadow p-1">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-50"></div>
+                        <div class="relative p-8 h-full">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 hover-scale">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Music Production</h3>
+                            <p class="text-gray-600 mb-6">State-of-the-art studio services including:</p>
+                            <ul class="text-gray-600 mb-8 space-y-2">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Recording Sessions
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Mixing & Mastering
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Sound Design
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors duration-300 group">
+                                Start Project
+                                <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music Education -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-full overflow-hidden rounded-3xl bg-white custom-shadow p-1">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-50"></div>
+                        <div class="relative p-8 h-full">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 hover-scale">
+                                <svg class="w-8 h-8 text-white " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Music Education</h3>
+                            <p class="text-gray-600 mb-6">Learn from industry professionals:</p>
+                            <ul class="text-gray-600 mb-8 space-y-2">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Private Lessons
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Group Workshops
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Online Courses
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors duration-300 group">
+                                Enroll Now
+                                <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music Consultation -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative h-full overflow-hidden rounded-3xl bg-white custom-shadow p-1">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-50"></div>
+                        <div class="relative p-8 h-full">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 hover-scale">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Music Consultation</h3>
+                            <p class="text-gray-600 mb-6">Expert guidance for your projects:</p>
+                            <ul class="text-gray-600 mb-8 space-y-2">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Career Planning
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Project Strategy
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Industry Advice
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors duration-300 group">
+                                Get Advice
+                                <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music Licensing -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative h-full overflow-hidden rounded-3xl bg-white custom-shadow p-1">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-50"></div>
+                        <div class="relative p-8 h-full">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 hover-scale">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Music Licensing</h3>
+                            <p class="text-gray-600 mb-6">License our music for your projects:</p>
+                            <ul class="text-gray-600 mb-8 space-y-2">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Film & TV
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Advertising
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    Video Games
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors duration-300 group">
+                                License Music
+                                <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+            <!-- CTA Section -->
+            <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+               <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl gap-2 group">
+                    Get in Touch
+                    <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up" data-aos-delay="500">
+                <div class="text-center p-6 rounded-2xl bg-white custom-shadow hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl font-bold gradient-text mb-2" id="performanceCount">10</div>
+                    <div class="text-gray-600">Live Performances</div>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-white custom-shadow hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl font-bold gradient-text mb-2" id="studentsCount">25</div>
+                    <div class="text-gray-600">Students Taught</div>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-white custom-shadow hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl font-bold gradient-text mb-2" id="albumsCount">2</div>
+                    <div class="text-gray-600">Albums Produced</div>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-white custom-shadow hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl font-bold gradient-text mb-2" id="yearsCount">4</div>
+                    <div class="text-gray-600">Years Experience</div>
+                </div>
+            </div>
+
+
+        <!-- Testimonial Section -->
+        <div class="container mx-auto px-4 mt-24">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="relative p-8 rounded-3xl bg-white custom-shadow" data-aos="fade-up" data-aos-delay="600">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.326 19.314l-6-15.6c-.123-.32.183-.64.512-.514l15.6 6a.375.375 0 01.099.635l-9.6 9.6a.375.375 0 01-.611-.121z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="testimonial-slider relative overflow-hidden h-48">
+                        <div class="testimonial-slide absolute w-full transition-opacity duration-500">
+                            <p class="text-gray-600 mb-4">"The band's performance at our wedding was absolutely incredible! They created the perfect atmosphere and had everyone dancing all night long."</p>
+                            <p class="font-semibold text-gray-900">- Sarah & John</p>
+                        </div>
+                        <div class="testimonial-slide absolute w-full transition-opacity duration-500 opacity-0">
+                            <p class="text-gray-600 mb-4">"Working with them in the studio was a game-changer for our album. Their expertise and attention to detail is unmatched."</p>
+                            <p class="font-semibold text-gray-900">- The Rhythm Crew</p>
+                        </div>
+                        <div class="testimonial-slide absolute w-full transition-opacity duration-500 opacity-0">
+                            <p class="text-gray-600 mb-4">"The music education program helped me develop my skills and confidence as a musician. Highly recommended!"</p>
+                            <p class="font-semibold text-gray-900">- Mike Thompson</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Counter animation function
+        function animateCounter(element, target, duration) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    clearInterval(timer);
+                    element.textContent = target;
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Start counter animations when elements are in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(document.getElementById('performanceCount'), 500, 2000);
+                    animateCounter(document.getElementById('studentsCount'), 1000, 2000);
+                    animateCounter(document.getElementById('albumsCount'), 50, 2000);
+                    animateCounter(document.getElementById('yearsCount'), 15, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.stats'));
+
+        // Testimonial slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.style.opacity = '0');
+            slides[index].style.opacity = '1';
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Initialize slider
+        showSlide(0);
+        setInterval(nextSlide, 5000);
+
+        // GSAP animations for enhanced effects
+        gsap.from('.service-card', {
+            duration: 1,
+            y: 100,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.service-card',
+                start: 'top bottom-=100',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    </script>
+{% endblock %}

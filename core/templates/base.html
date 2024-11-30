@@ -1,0 +1,298 @@
+{% load static tailwind_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Benites Ministries - Transforming Lives Through Faith and Service" />
+    <meta name="author" content="Benites Ministries" />
+    <title>The Benites Ministries | Official Website</title>
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+
+    <!-- Tailwind CSS -->
+     {% tailwind_css %}
+
+<!--    phophor icon-->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Alpine.js -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js" defer></script>
+
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+
+     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+    <!-- swiper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.2.0/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.2.0/swiper-bundle.min.css">
+
+
+    <!-- Full calendar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.css" rel="stylesheet">
+
+    <!-- Anime -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- Moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+    <!-- AOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.7.1/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4338CA, #6D28D9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+    </style>
+ <style>
+        /* Custom animations and transitions */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .gradient-border {
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #6366f1, #3b82f6, #10b981);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gradient-border:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Floating social icons */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .social-icon {
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2) translateY(-15px);
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        {% include 'navbar.html' %}
+    </header>
+
+    {% if messages %}
+        <div class="max-w-lg mx-auto">
+            {% for message in messages %}
+                {% with message.tags as tags %}
+                    <div class="flex rounded-lg p-4 mb-4 text-sm {% if 'error' in tags %}bg-red-100 text-red-700{% elif 'success' in tags %}bg-green-100 text-green-700{% elif 'warning' in tags %}bg-yellow-100 text-yellow-700{% elif 'info' in tags %}bg-blue-100 text-blue-700{% endif %}" role="alert">
+                        <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        <div>
+                            <span class="font-medium">
+                                {% if 'error' in tags %}
+                                    Error alert!
+                                {% elif 'success' in tags %}
+                                    Success alert!
+                                {% elif 'warning' in tags %}
+                                    Warning alert!
+                                {% elif 'info' in tags %}
+                                    Info alert!
+                                {% endif %}
+                            </span> {{ message }}
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+<!--    footer-->
+
+ <footer class="bg-gradient-to-br from-gray-900 via-gray-700 to-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Information Section -->
+                <div class="hover-lift bg-gray-800 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold border-b-2 border-indigo-500 pb-2 mb-4">Information</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="/event/" class="flex items-center text-gray-200 hover:text-white transition-colors text-m">
+                                <i class="fas fa-calendar-alt mr-2 text-indigo-500"></i>
+                                Calendar Activities
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about/" class="flex items-center text-gray-200 hover:text-white transition-colors text-m">
+                                <i class="fas fa-users mr-2 text-indigo-500"></i>
+                                Our Team
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support Section -->
+                <div class="hover-lift bg-gray-800 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold border-b-2 border-indigo-500 pb-2 mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="flex items-center text-gray-200 hover:text-white transition-colors text-m">
+                                <i class="fas fa-heart mr-2 text-pink-500"></i>
+                                Donate Now
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center text-gray-200 hover:text-white transition-colors text-m">
+                                <i class="fas fa-handshake mr-2 text-green-500"></i>
+                                Partnership
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="hover-lift bg-gray-800 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold border-b-2 border-indigo-500 pb-2 mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-200 text-sm">
+                            <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>
+                            Logpom Carrefour Bassong, Douala, Cameroon
+                        </li>
+                        <li class="flex items-center text-gray-200 text-sm">
+                            <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                            thebenitesvoices@gmail.com
+                        </li>
+                        <li class="flex items-center text-gray-200 text-sm">
+                            <i class="fas fa-phone mr-2 text-green-500"></i>
+                            +1 (832) 846-4823
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Section -->
+                <div class="hover-lift bg-gray-800 p-4 rounded-lg">
+                    <h3 class="text-xl font-bold border-b-2 border-indigo-500 pb-2 mb-4">Newsletter</h3>
+                    <form class="space-y-2">
+                        <div class="relative group">
+                            <input
+                                type="email"
+                                placeholder="Enter your email"
+                                class="w-full px-3 py-2 text-sm bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300 gradient-border"
+                                required
+                            >
+                        </div>
+                        <button
+                            type="submit"
+                            class="w-full relative text-sm bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg transition-all duration-300 hover:bg-indigo-700 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        >
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="flex justify-center space-x-6 mt-6">
+                <a href="#" class="social-icon text-3xl text-blue-600 hover:text-blue-700 transition-colors">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="social-icon text-3xl text-pink-500 hover:text-pink-600 transition-colors">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon text-3xl text-red-600 transition-colors">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon text-3xl text-black transition-colors">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center mt-6 pt-4 border-t border-gray-700">
+                <p class="text-s text-gray-300">&copy; 2024 Benites Ministries. All rights reserved. Designed by NAP services.</p>
+            </div>
+        </div>
+    </footer>
+
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // GSAP Animations
+            gsap.from('footer .container > div > div', {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power3.out'
+            });
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+
+<!--    &lt;!&ndash;Start of Tawk.to Script&ndash;&gt;-->
+<!--    <script type="text/javascript">-->
+<!--    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();-->
+<!--    (function(){-->
+<!--    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];-->
+<!--    s1.async=true;-->
+<!--    s1.src='https://embed.tawk.to/66c3962d146b7af4a43c2152/1i5m058sk';-->
+<!--    s1.charset='UTF-8';-->
+<!--    s1.setAttribute('crossorigin','*');-->
+<!--    s0.parentNode.insertBefore(s1,s0);-->
+<!--    })();-->
+<!--    </script>-->
+<!--    &lt;!&ndash;End of Tawk.to Script&ndash;&gt;-->
+
+
+</body>
+</html>

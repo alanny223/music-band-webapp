@@ -1,0 +1,661 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
+    }
+    .calendar-wrapper {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .category-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+    .category-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 2rem;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.7s ease-in-out;
+    }
+    .category-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .color-box {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      margin-right: 0.75rem;
+    }
+    .category-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #374151;
+    }
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .event-card {
+      background-color: #ffffff;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      animation: slideIn 0.7s ease-in-out;
+    }
+    .event-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 12px 18px rgba(0, 0, 0, 0.15);
+    }
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    .event-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .event-card:hover .event-image {
+      transform: scale(1.05);
+    }
+    .event-details {
+      padding: 1.75rem;
+    }
+    .event-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+    .event-date, .event-location {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 0.25rem;
+    }
+    .get-tickets {
+      background-color: #4f46e5;
+      color: #ffffff;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      text-align: center;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .get-tickets:hover {
+      background-color: #4338ca;
+    }
+    .no-events {
+      text-align: center;
+      font-size: 1rem;
+      color: #6b7280;
+      margin-top: 2rem;
+      animation: fadeIn 0.7s ease-in-out;
+    }
+    .reserve-tickets {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: #4f46e5;
+      color: #ffffff;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      animation: bounceIn 0.5s ease-in-out;
+    }
+    .reserve-tickets:hover {
+      background-color: #4338ca;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+       body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
+  }
+
+   /* Enhanced Hero Section Styles */
+  .hero-section {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: heroGradient 15s ease infinite;
+    padding: clamp(2rem, 5vw, 4rem);
+    text-align: center;
+    color: white;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes heroGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 1rem;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: clamp(0.5rem, 2vw, 1rem);
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    opacity: 0.9;
+  }
+
+  /* Enhanced Search Bar Styles */
+  .search-bar {
+    max-width: min(500px, 90%);
+    margin: 0 auto 2rem;
+    display: flex;
+    gap: 0.5rem;
+    animation: fadeInUp 1s ease-out 0.2s backwards;
+  }
+
+  .search-input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .search-input:focus {
+    outline: none;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .search-button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Enhanced Countdown Section */
+  .countdown-section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 1rem;
+    margin: -3rem auto 3rem;
+    max-width: min(800px, 95%);
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    animation: fadeInUp 1s ease-out 0.4s backwards;
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: clamp(0.5rem, 2vw, 1rem);
+    text-align: center;
+  }
+
+  .countdown-item {
+    background: rgba(255, 255, 255, 0.9);
+    padding: clamp(0.75rem, 2vw, 1rem);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .countdown-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .countdown-number {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #4f46e5;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Enhanced Social Share Buttons */
+  .social-share {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 0.6s backwards;
+  }
+
+  .share-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    color: blue;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    justify-content: center;
+  }
+
+  /* Enhanced Category Bar */
+  .category-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+
+  .category-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeInCategory 0.5s ease-out forwards;
+  }
+
+  /* New animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInCategory {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Apply staggered animation delay to category items */
+  .category-item:nth-child(1) { animation-delay: 0.1s; }
+  .category-item:nth-child(2) { animation-delay: 0.2s; }
+  .category-item:nth-child(3) { animation-delay: 0.3s; }
+  .category-item:nth-child(4) { animation-delay: 0.4s; }
+  .category-item:nth-child(5) { animation-delay: 0.5s; }
+  .category-item:nth-child(6) { animation-delay: 0.6s; }
+
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .search-bar {
+      flex-direction: column;
+    }
+
+    .search-button {
+      width: 100%;
+    }
+
+    .countdown-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .social-share {
+      gap: 0.75rem;
+    }
+
+    .share-button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-section {
+      min-height: 40vh;
+    }
+
+    .countdown-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-item {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  </style>
+
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <h1 class="hero-title">Discover Amazing Events</h1>
+    <p class="hero-subtitle">Find and join exciting events in your area</p>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" class="search-input text-black" placeholder="Search events...">
+        <button class="search-button" onclick="searchEvents()">Search</button>
+    </div>
+</div>
+
+<!-- Enhanced Countdown Section -->
+<div class="countdown-section">
+    <div class="countdown-grid" id="countdown">
+        <div class="countdown-item">
+            <div class="countdown-number" id="days">00</div>
+            <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+        </div>
+    </div>
+    <div class="social-share flex justify-center">
+        <button onclick="shareEvent('facebook')" class="share-button share-facebook">
+            <i class="fab fa-facebook-f"></i>
+            Share
+        </button>
+        <button onclick="shareEvent('twitter')" class="share-button share-twitter">
+            <i class="fab fa-twitter"></i>
+            Tweet
+        </button>
+        <button onclick="shareEvent('linkedin')" class="share-button share-linkedin">
+            <i class="fab fa-linkedin-in"></i>
+            Post
+        </button>
+    </div>
+</div>
+<br>
+  <div class="calendar-wrapper">
+    <h1 class="text-3xl font-bold mb-6 text-center text-indigo-600">Upcoming Events</h1>
+
+    <div class="category-bar">
+      {% for category in categories %}
+      <div class="category-item" onclick="filterEvents('{{ category.name }}')">
+        <span class="color-box" style="background-color: {{ category.color }};"></span>
+        <span class="category-name">{{ category.name }}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="event-grid" id="eventGrid">
+      {% for event in events %}
+      <div class="event-card" data-category="{{ event.category.name }}">
+        <img src="{{ event.image_url }}" alt="{{ event.title }}" class="event-image">
+        <div class="event-details">
+          <h3 class="event-title text-black">{{ event.title }}</h3>
+          <p class="event-date text-black">{{ event.start_datetime|date:"Y-m-d H:i:s" }}</p>
+          <p class="event-location text-black">{{ event.location }}</p>
+          <a href="{{ event.url }}" class="view-event">View Event</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="no-events" id="noEventsMessage" style="display: none;">
+      There are no events regarding this category scheduled.
+    </div>
+
+    <a href="/tickets" class="reserve-tickets">Reserve Your Tickets Now</a>
+  </div>
+
+  <script>
+   function filterEvents(category) {
+    const eventCards = document.querySelectorAll('.event-card');
+    const noEventsMessage = document.getElementById('noEventsMessage');
+    let hasEvents = false;
+
+    if (!eventCards.length || !noEventsMessage) {
+        console.error('Required elements not found');
+        return;
+    }
+
+    eventCards.forEach(card => {
+        if (card.getAttribute('data-category') === category || category === 'All') {
+            card.style.display = 'block';
+            card.style.animation = 'slideIn 0.7s ease-in-out';
+            hasEvents = true;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    noEventsMessage.style.display = hasEvents ? 'none' : 'block';
+}
+
+function searchEvents() {
+    const searchInput = document.getElementById('searchInput');
+    const eventCards = document.querySelectorAll('.event-card');
+    const noEventsMessage = document.getElementById('noEventsMessage');
+
+    if (!searchInput || !eventCards.length || !noEventsMessage) {
+        console.error('Required elements not found');
+        return;
+    }
+
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    let hasEvents = false;
+
+    eventCards.forEach(card => {
+        const title = card.querySelector('.event-title')?.textContent.toLowerCase() || '';
+        const date = card.querySelector('.event-date')?.textContent.toLowerCase() || '';
+        const location = card.querySelector('.event-location')?.textContent.toLowerCase() || '';
+
+        if (title.includes(searchTerm) ||
+            date.includes(searchTerm) ||
+            location.includes(searchTerm)) {
+            card.style.display = 'block';
+            card.style.animation = 'slideIn 0.7s ease-in-out';
+            hasEvents = true;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    noEventsMessage.style.display = hasEvents ? 'none' : 'block';
+}
+
+// Updated countdown function
+function startCountdown() {
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+        console.error('Countdown elements not found');
+        return;
+    }
+
+    // Get all event dates
+    const eventDates = Array.from(document.querySelectorAll('.event-date')).map(el => {
+        return new Date(el.textContent).getTime();
+    });
+
+    // Find the next event date
+    const now = new Date().getTime();
+    const nextEventDate = eventDates.find(date => date > now) || now;
+
+    function updateCountdown() {
+        const currentTime = new Date().getTime();
+        const distance = nextEventDate - currentTime;
+
+        if (distance < 0) {
+            daysEl.innerHTML = "00";
+            hoursEl.innerHTML = "00";
+            minutesEl.innerHTML = "00";
+            secondsEl.innerHTML = "00";
+            return false;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        daysEl.innerHTML = days.toString().padStart(2, '0');
+        hoursEl.innerHTML = hours.toString().padStart(2, '0');
+        minutesEl.innerHTML = minutes.toString().padStart(2, '0');
+        secondsEl.innerHTML = seconds.toString().padStart(2, '0');
+        return true;
+    }
+
+    if (updateCountdown()) {
+        const countdownTimer = setInterval(() => {
+            if (!updateCountdown()) {
+                clearInterval(countdownTimer);
+            }
+        }, 1000);
+    }
+}
+
+
+    // Social sharing function
+    function shareEvent(platform) {
+        const eventUrl = encodeURIComponent(window.location.href);
+        const eventTitle = encodeURIComponent("Check out this amazing event!");
+
+        let shareUrl = '';
+        switch(platform) {
+            case 'facebook':
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${eventUrl}`;
+                break;
+            case 'twitter':
+                shareUrl = `https://twitter.com/intent/tweet?text=${eventTitle}&url=${eventUrl}`;
+                break;
+            case 'linkedin':
+                shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${eventUrl}&title=${eventTitle}`;
+                break;
+        }
+
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+
+
+// Debounce function to improve search performance
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Add event listeners when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    startCountdown();
+
+    // Add debounced search input listener
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        const debouncedSearch = debounce(() => searchEvents(), 300);
+        searchInput.addEventListener('input', debouncedSearch);
+    }
+
+    // Add keyboard event listener for search
+    document.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && document.activeElement.id === 'searchInput') {
+            searchEvents();
+        }
+    });
+});
+  </script>
+{% endblock %}
