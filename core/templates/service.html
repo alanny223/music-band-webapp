@@ -306,34 +306,58 @@
             </div>
 
 
-        <!-- Testimonial Section -->
-        <div class="container mx-auto px-4 mt-24">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="relative p-8 rounded-3xl bg-white custom-shadow" data-aos="fade-up" data-aos-delay="600">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M11.326 19.314l-6-15.6c-.123-.32.183-.64.512-.514l15.6 6a.375.375 0 01.099.635l-9.6 9.6a.375.375 0 01-.611-.121z"/>
-                            </svg>
+         <!-- Testimonial Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">What Our Clients Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center mb-4">
+                            <img src="/media/activities/prosperous-businessman-keeps-hands-crossed-has-satisfied-expression_273609-16711.avif" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold text-lg">John Doe</h4>
+                                <p class="text-gray-600">Event Organizer</p>
+                            </div>
                         </div>
+                        <p class="text-gray-700">"The Benites Ministries delivered an unforgettable performance at our charity event. Their music touched everyone's hearts and made the evening truly special."</p>
                     </div>
-                    <div class="testimonial-slider relative overflow-hidden h-48">
-                        <div class="testimonial-slide absolute w-full transition-opacity duration-500">
-                            <p class="text-gray-600 mb-4">"The band's performance at our wedding was absolutely incredible! They created the perfect atmosphere and had everyone dancing all night long."</p>
-                            <p class="font-semibold text-gray-900">- Sarah & John</p>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://via.placeholder.com/60" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold text-lg">Jane Smith</h4>
+                                <p class="text-gray-600">Aspiring Artist</p>
+                            </div>
                         </div>
-                        <div class="testimonial-slide absolute w-full transition-opacity duration-500 opacity-0">
-                            <p class="text-gray-600 mb-4">"Working with them in the studio was a game-changer for our album. Their expertise and attention to detail is unmatched."</p>
-                            <p class="font-semibold text-gray-900">- The Rhythm Crew</p>
+                        <p class="text-gray-700">"The music production services provided by The Benites Ministries are top-notch. They helped me create a professional sound for my debut album."</p>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="/media/activities/boy.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold text-lg">Mike Johnson</h4>
+                                <p class="text-gray-600">Music Student</p>
+                            </div>
                         </div>
-                        <div class="testimonial-slide absolute w-full transition-opacity duration-500 opacity-0">
-                            <p class="text-gray-600 mb-4">"The music education program helped me develop my skills and confidence as a musician. Highly recommended!"</p>
-                            <p class="font-semibold text-gray-900">- Mike Thompson</p>
-                        </div>
+                        <p class="text-gray-700">"The music education program at The Benites Ministries has been transformative. The instructors are passionate and knowledgeable, and I've grown so much as a musician."</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Call-to-Action Section -->
+        <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-6" data-aos="fade-up">Ready to Start Your Musical Journey?</h2>
+                <p class="text-xl mb-8" data-aos="fade-up" data-aos-delay="100">Whether you're looking to perform, produce, or learn, we're here to help you achieve your musical goals.</p>
+                <a href="/contact" class="inline-block bg-white text-blue-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition duration-300" data-aos="fade-up" data-aos-delay="200">Get Started Today</a>
+            </div>
+        </section>
     </section>
 
     <script>
@@ -343,35 +367,34 @@
             once: true
         });
 
-        // Counter animation function
-        function animateCounter(element, target, duration) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
+       // Animate count up for stats
+        function animateValue(id, start, end, duration) {
+            let range = end - start;
+            let current = start;
+            let increment = end > start? 1 : -1;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            let obj = document.getElementById(id);
+            let timer = setInterval(function() {
+                current += increment;
+                obj.innerHTML = current;
+                if (current == end) {
                     clearInterval(timer);
-                    element.textContent = target;
-                } else {
-                    element.textContent = Math.floor(start);
                 }
-            }, 16);
+            }, stepTime);
         }
 
-        // Start counter animations when elements are in view
-        const observer = new IntersectionObserver((entries) => {
+        // Start animations when the elements are in view
+        let observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounter(document.getElementById('performanceCount'), 500, 2000);
-                    animateCounter(document.getElementById('studentsCount'), 1000, 2000);
-                    animateCounter(document.getElementById('albumsCount'), 50, 2000);
-                    animateCounter(document.getElementById('yearsCount'), 15, 2000);
-                    observer.unobserve(entry.target);
+                    animateValue("performanceCount", 0, 100, 2000);
+                    animateValue("studentsCount", 0, 250, 2000);
+                    animateValue("albumsCount", 0, 20, 2000);
                 }
             });
-        });
+        }, { threshold: 0.5 });
 
-        observer.observe(document.querySelector('.stats'));
+        observer.observe(document.querySelector('#performanceCount'));
 
         // Testimonial slider
         let currentSlide = 0;

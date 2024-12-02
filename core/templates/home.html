@@ -186,29 +186,130 @@
 }
 </style>
 
-   <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative bg-gray-900 overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="/media/logos/gospel 2.jpeg" alt="Band performing" class="w-full h-full object-cover opacity-50">
-        </div>
-        <div class="hero-content relative z-10 text-center px-6">
-            <h1 class="text-6xl md:text-8xl font-bold mb-2 text-purple-600">
-                The Benites Ministries
-            </h1>
-            <p class="text-xl text-white md:text-xl mb-8">Discover gospel music that celebrates faith, love and hope<br>
-                Explore our songs, our upcoming concerts and the world of our label</p>
+<!-- Hero Section -->
+<section class="min-h-screen flex items-center justify-center relative bg-gray-900 overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="/media/logos/gospel 2.jpeg" alt="Band performing" class="w-full h-full object-cover opacity-50">
+    </div>
+    <div class="hero-content relative z-10 text-center px-6">
+        <h1 class="text-6xl md:text-8xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+            The Benites Ministries
+        </h1>
+        <p class="text-xl text-white md:text-xl mb-8">Discover gospel music that celebrates faith, love and hope</p>
 
-            <div class="flex gap-4 justify-center">
-                <a href="/about/" class="bg-indigo-700 text-white px-8 py-3 rounded-full transition-all hover-scale flex items-center">
-                    <i class="fas fa-info-circle mr-2"></i> Learn more
-                </a>
-                <a href="/event/" class="border-2 border-white text-white px-8 py-3 rounded-full transition-all hover-scale flex items-center">
-                    <i class="fas fa-calendar-alt mr-2"></i> Our events
-                </a>
+        <div class="flex gap-4 justify-center">
+            <a href="/about/" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-3 rounded-full transition-all hover:from-blue-700 hover:to-purple-700 flex items-center">
+                <i class="fas fa-info-circle mr-2"></i> Learn more
+            </a>
+            <a href="/event/" class="border-2 border-white text-white px-8 py-3 rounded-full transition-all hover:bg-white hover:text-gray-900 flex items-center">
+                <i class="fas fa-calendar-alt mr-2"></i> Our events
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<section class="relative min-h-screen py-24 bg-gradient-to-b from-slate-50 via-purple-50 to-slate-100">
+  <!-- Animated Background -->
+  <div id="particles-js" class="absolute inset-0 opacity-20"></div>
+
+  <!-- Decorative Elements -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-purple-400/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-400/30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+  <div class="container relative mx-auto px-4">
+    <div class="flex flex-col lg:flex-row items-center gap-16">
+      <!-- Left Image Column -->
+      <div class="w-full lg:w-1/2" id="imageContainer">
+        <div class="relative group">
+          <!-- Main Image -->
+          <div class="overflow-hidden rounded-3xl shadow-xl transition-all duration-500 group-hover:shadow-2xl">
+            <img
+              src="/media/logos/logo.jpg"
+              alt="Mission visuelle"
+              class="w-full aspect-[4/3] object-cover transform transition-transform duration-700 group-hover:scale-110"
+            >
+          </div>
+
+          <!-- Floating Elements -->
+          <div class="absolute -top-8 -right-8 w-24 h-24 bg-purple-500/20 rounded-full animate-pulse"></div>
+          <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-indigo-500/20 rounded-full animate-pulse"></div>
+
+          <!-- Interactive Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-purple-800/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl flex items-end">
+            <div class="p-8 text-white transform translate-y-10 group-hover:translate-y-0 transition-transform duration-500">
+              <p class="font-medium text-lg">
+                Explore our ministry's journey through music and worship.
+              </p>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
 
+      <!-- Right Content Column -->
+      <div class="w-full lg:w-1/2 space-y-8" id="contentContainer">
+        <!-- Section Title -->
+        <div class="space-y-4">
+          <h2 class="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            WHO ARE WE?
+          </h2>
+          <div class="w-16 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full"></div>
+        </div>
+
+        <!-- Mission Text -->
+        <div class="space-y-6">
+          <p class="text-lg text-gray-800 leading-relaxed">
+            The Benites Ministries International is a ministry serving praise and worship unto the Lord. Our mission is to touch hearts, uplift souls, and create moments of spiritual communion through the power of music.
+          </p>
+
+          <div class="p-6 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-purple-200">
+            <p class="text-lg text-gray-700 leading-relaxed">
+              The Benites Ministries is subdivided into two branches:
+            </p>
+            <ul class="mt-4 space-y-4">
+              <li class="flex items-start space-x-4">
+                <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-purple-100">
+                  <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="font-semibold text-purple-700">The Benites Voices</h3>
+                  <p class="mt-1 text-gray-600">
+                    The worship team accompanying this ministry, comprised of young authors, composers, musicians, publishers, producers, arrangers, and artists.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start space-x-4">
+                <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-100">
+                  <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="font-semibold text-indigo-700">The Benites Universal Record</h3>
+                  <p class="mt-1 text-gray-600">
+                    Our dedicated music production label, bringing worship to life through professional recording and production.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="pt-6">
+          <a href="/about" class="group inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50">
+            <span>
+              READ MORE
+              <span class="ml-2 inline-block transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Features Section -->
 <section class="relative bg-gradient-to-b from-white via-blue-50 to-white py-24 overflow-hidden">
@@ -222,7 +323,7 @@
     <!-- Header -->
     <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
       <span class="text-blue-600 text-sm font-semibold tracking-wider uppercase mb-2 block">What We Offer</span>
-      <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+      <h2 class="text-5xl md:text-6xl font-bold text-blue-700 mb-6">
         Our Services
       </h2>
       <p class="text-gray-600 text-lg">Experience the perfect blend of artistry and professionalism in every service we offer.</p>
@@ -299,7 +400,7 @@
 
     <!-- Services Button -->
     <div class="text-center" data-aos="fade-up" data-aos-delay="400">
-      <a href="/service/" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl gap-2 group">
+      <a href="/service/" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-800 rounded-full hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl gap-2 group">
         Explore All Services
         <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -483,7 +584,7 @@
       <!-- Header Section -->
       <div class="flex flex-col md:flex-row justify-between items-center mb-16">
         <div class="mb-8 md:mb-0 relative" data-aos="fade-right">
-          <h2 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+          <h2 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
             News & Articles
           </h2>
             <p class="text-gray-900">Stay updated with the latest news and articles from our community.</p>
@@ -491,7 +592,7 @@
         </div>
           <!-- Bottom Navigation -->
       <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="400">
-        <a href="#" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 group">
+        <a href="#" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-800 rounded-full hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 group">
           Explore All Articles
           <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -515,7 +616,7 @@
                 <span class="px-3 py-1 text-xs font-semibold text-indigo-600 bg-indigo-50 rounded-full">News</span>
                 <time class="text-sm text-gray-500">Oct 14, 2024</time>
               </div>
-              <h3 class="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+              <h3 class="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
                 Get Ready for a Revolution
               </h3>
               <p class="text-gray-600 mb-6 line-clamp-2">
@@ -550,7 +651,7 @@
                 <span class="px-3 py-1 text-xs font-semibold text-purple-600 bg-purple-50 rounded-full">Update</span>
                 <time class="text-sm text-gray-500">Oct 12, 2024</time>
               </div>
-              <h3 class="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+              <h3 class="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
                 Breakthrough Innovation
               </h3>
               <p class="text-gray-600 mb-6 line-clamp-2">
@@ -597,7 +698,7 @@
                 <span class="px-3 py-1 text-xs font-semibold text-green-600 bg-green-50 rounded-full">Event</span>
                 <time class="text-sm text-gray-500">Jan 15, 2025</time>
               </div>
-              <h3 class="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+              <h3 class="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
                 Special Anniversary Edition
               </h3>
               <p class="text-gray-600 mb-6 line-clamp-2">
@@ -629,7 +730,7 @@
     <div class="bg-white rounded-lg shadow-xl max-w-4xl mx-auto overflow-hidden">
       <div class="grid grid-cols-1 lg:grid-cols-3">
         <!-- Left Side -->
-        <div class="p-1 bg-gradient-to-r from-indigo-600 to-purple-400 text-white">
+        <div class="p-1 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
           <div class="mb-12">
             <h2 class="text-3xl font-bold mb-2">Need Our Service?</h2>
             <h3 class="text-xl opacity-90">Feel Free to Contact Us</h3>
@@ -695,7 +796,7 @@
 
             <button
               type="submit"
-              class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-600  hover:to-purple-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5"
+              class="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-indigo-600  hover:to-purple-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5"
             >
               Send Us A Message
             </button>
