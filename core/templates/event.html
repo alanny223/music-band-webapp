@@ -409,6 +409,16 @@
     }
   }
 
+      @keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
   </style>
 
 
@@ -656,6 +666,46 @@ document.addEventListener('DOMContentLoaded', function() {
             searchEvents();
         }
     });
+});
+
+      function removePastEvents() {
+    const eventCards = document.querySelectorAll('.event-card');
+    const currentTime = new Date().getTime();
+    let hasRemovedEvents = false;
+
+    eventCards.forEach(card => {
+        const dateElement = card.querySelector('.event-date');
+        if (dateElement) {
+            const eventDate = new Date(dateElement.textContent).getTime();
+            if (eventDate < currentTime) {
+                card.style.animation = 'fadeOut 0.7s ease-in-out';
+                setTimeout(() => {
+                    card.remove();
+                }, 700);
+                hasRemovedEvents = true;
+            }
+        }
+    });
+
+    if (hasRemovedEvents) {
+        setTimeout(() => {
+            const remainingEvents = document.querySelectorAll('.event-card');
+            if (remainingEvents.length === 0) {
+                document.getElementById('noEventsMessage').style.display = 'block';
+            }
+        }, 700);
+    }
+}
+
+// Add this to your existing DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing code ...
+
+    // Check for past events every minute
+    setInterval(removePastEvents, 60000);
+
+    // Initial check for past events
+    removePastEvents();
 });
   </script>
 {% endblock %}

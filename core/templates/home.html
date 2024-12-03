@@ -184,6 +184,22 @@
 .feature-card:hover .w-14 {
     box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
 }
+
+/* Text Animation */
+    @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
 </style>
 
 <!-- Hero Section -->
@@ -209,107 +225,64 @@
 </section>
 
 
-<section class="relative min-h-screen py-24 bg-gradient-to-b from-slate-50 via-purple-50 to-slate-100">
-  <!-- Animated Background -->
-  <div id="particles-js" class="absolute inset-0 opacity-20"></div>
+<section class="container mx-auto px-4 py-20 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute w-96 h-96 bg-blue-200/30 rounded-full blur-3xl -top-10 -left-10 animate-pulse"></div>
+            <div class="absolute w-96 h-96 bg-purple-200/30 rounded-full blur-3xl -bottom-10 -right-10 animate-pulse delay-1000"></div>
+        </div>
 
-  <!-- Decorative Elements -->
-  <div class="absolute top-0 right-0 w-96 h-96 bg-purple-400/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-400/30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
-  <div class="container relative mx-auto px-4">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
-      <!-- Left Image Column -->
-      <div class="w-full lg:w-1/2" id="imageContainer">
-        <div class="relative group">
-          <!-- Main Image -->
-          <div class="overflow-hidden rounded-3xl shadow-xl transition-all duration-500 group-hover:shadow-2xl">
-            <img
-              src="/media/logos/logo.jpg"
-              alt="Mission visuelle"
-              class="w-full aspect-[4/3] object-cover transform transition-transform duration-700 group-hover:scale-110"
-            >
-          </div>
-
-          <!-- Floating Elements -->
-          <div class="absolute -top-8 -right-8 w-24 h-24 bg-purple-500/20 rounded-full animate-pulse"></div>
-          <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-indigo-500/20 rounded-full animate-pulse"></div>
-
-          <!-- Interactive Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-purple-800/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl flex items-end">
-            <div class="p-8 text-white transform translate-y-10 group-hover:translate-y-0 transition-transform duration-500">
-              <p class="font-medium text-lg">
-                Explore our ministry's journey through music and worship.
-              </p>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <h2 class="text-5xl md:text-6xl font-bold text-blue-700 mb-6">
+                    Who We Are
+                </h2>
+                <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-6"></div>
+                <p class="text-gray-600 text-xl max-w-2xl mx-auto">
+                    A dynamic ministry dedicated to touching hearts and uplifting souls through the transformative power of music and worship.
+                </p>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Right Content Column -->
-      <div class="w-full lg:w-1/2 space-y-8" id="contentContainer">
-        <!-- Section Title -->
-        <div class="space-y-4">
-          <h2 class="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-            WHO ARE WE?
-          </h2>
-          <div class="w-16 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full"></div>
-        </div>
-
-        <!-- Mission Text -->
-        <div class="space-y-6">
-          <p class="text-lg text-gray-800 leading-relaxed">
-            The Benites Ministries International is a ministry serving praise and worship unto the Lord. Our mission is to touch hearts, uplift souls, and create moments of spiritual communion through the power of music.
-          </p>
-
-          <div class="p-6 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-purple-200">
-            <p class="text-lg text-gray-700 leading-relaxed">
-              The Benites Ministries is subdivided into two branches:
-            </p>
-            <ul class="mt-4 space-y-4">
-              <li class="flex items-start space-x-4">
-                <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-purple-100">
-                  <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-                  </svg>
-                </span>
-                <div>
-                  <h3 class="font-semibold text-purple-700">The Benites Voices</h3>
-                  <p class="mt-1 text-gray-600">
-                    The worship team accompanying this ministry, comprised of young authors, composers, musicians, publishers, producers, arrangers, and artists.
-                  </p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white/70 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-blue-100 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="mb-6 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-700 text-center mb-4">
+                        The Benites Voices
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        Our worship team comprises young authors, composers, musicians, publishers, producers, arrangers, and artists dedicated to creating transformative musical experiences.
+                    </p>
                 </div>
-              </li>
-              <li class="flex items-start space-x-4">
-                <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-100">
-                  <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                  </svg>
-                </span>
-                <div>
-                  <h3 class="font-semibold text-indigo-700">The Benites Universal Record</h3>
-                  <p class="mt-1 text-gray-600">
-                    Our dedicated music production label, bringing worship to life through professional recording and production.
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
 
-        <!-- CTA Button -->
-        <div class="pt-6">
-          <a href="/about" class="group inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50">
-            <span>
-              READ MORE
-              <span class="ml-2 inline-block transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </span>
-          </a>
+                <div class="bg-white/70 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-blue-100 opacity-0 animate-fade-in-up" style="animation-delay: 0.6s;">
+                    <div class="mb-6 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-700 text-center mb-4">
+                        The Benites Universal Record
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        Our dedicated music production label brings worship to life through professional recording, production, and innovative musical storytelling.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s;">
+                <a href="/about" class="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-800 rounded-full hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl group">
+                    Learn More About Us
+                    <svg class="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 <!-- Features Section -->
 <section class="relative bg-gradient-to-b from-white via-blue-50 to-white py-24 overflow-hidden">
@@ -444,7 +417,7 @@
                                 loop
                                 playsinline
                             >
-                                <source src="/media/activities/Worship night.mp4" type="video/mp4">
+                                <source src="/media/activities/hour of worship.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -460,7 +433,7 @@
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center space-x-2 text-gray-500">
                             <i class="fas fa-calendar-alt text-blue-600"></i>
-                            <span>November 30, 2024</span>
+                            <span>December 28, 2024</span>
                         </div>
                         <div class="flex items-center space-x-2 text-gray-500">
                             <i class="fas fa-clock text-blue-600"></i>
@@ -512,7 +485,7 @@
 <!--                            <span>3:00 PM</span>-->
 <!--                        </div>-->
                     </div>
-                    <p class="text-gray-600 mb-4">An evening dedicated to lifting our voices in worship and gratitude.</p>
+                    <p class="text-gray-600 mb-4">Soon to come, an extraordinary evening of praise, celebrating God's grace through praise and declarations.</p>
                     <a href="#">
                     <button class="services-button w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 group relative overflow-hidden">
                         <span class="relative z-10">More Info</span>
@@ -550,7 +523,7 @@
                 <span>4:00 PM</span>
             </div>
         </div>
-        <p class="text-gray-600 mb-4">An evening dedicated to lifting our voices in worship and gratitude.</p>
+        <p class="text-gray-600 mb-4">Develop advanced vocal techniques, stage presence, and worship leadership skills under the guidance of our professional coach.</p>
 
         <a href="#">
             <button class="services-button w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 group relative overflow-hidden">

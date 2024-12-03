@@ -5,6 +5,7 @@ from .models import TeamMember, BoardMember, EventCategory, Event
 from django.http import JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
 import json
+from django.utils import timezone
 
 
 def home(request):
@@ -69,7 +70,8 @@ def service(request):
 
 def event_list(request):
     """Display the event calendar (monthly/weekly/daily view)"""
-    events = Event.objects.all().order_by('start_datetime')
+    current_datetime = timezone.now()
+    events = Event.objects.filter(end_datetime__gte=current_datetime).order_by('start_datetime')
     categories = EventCategory.objects.all()
     return render(request, 'event.html', {'events': events, 'categories': categories})
 
