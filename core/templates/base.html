@@ -1,4 +1,4 @@
-{% load static tailwind_tags %}
+{% load tailwind_tags %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -14,9 +14,10 @@
     <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
 
     <!-- Tailwind CSS -->
+    {% tailwind_preload_css %}
      {% tailwind_css %}
 
-<!--    phophor icon-->
+<!--    phosphor icon-->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- Alpine.js -->
@@ -151,7 +152,7 @@
 
 <!--    footer-->
 
- <footer class="bg-gradient-to-br from-gray-900 via-gray-700 to-gray-800 text-white py-8 px-4">
+ <footer class="bg-gradient-to-br from-gray-900 via-gray-700 to-gray-900 text-white py-8 px-4">
         <div class="container mx-auto max-w-6xl">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <!-- Information Section -->
