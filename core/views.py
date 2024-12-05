@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
 from .forms import EventForm
-from .models import TeamMember, BoardMember, EventCategory, Event
+from .models import TeamMember, BoardMember, EventCategory, Event, Announcement, NewsArticle
 from django.http import JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
 import json
@@ -9,7 +9,13 @@ from django.utils import timezone
 
 
 def home(request):
-    return render(request, 'home.html')
+    announcements = Announcement.objects.all()[:3]  # Fetch the latest 3 announcements
+    news_articles = NewsArticle.objects.all()[:3]  # Fetch the latest 3 articles
+    context = {
+        'announcements': announcements,
+        'news_articles': news_articles,
+    }
+    return render(request, 'home.html', context)
 
 
 def about(request):
@@ -69,7 +75,6 @@ def service(request):
 
 
 def event_list(request):
-    """Display the event calendar (monthly/weekly/daily view)"""
     current_datetime = timezone.now()
     events = Event.objects.filter(end_datetime__gte=current_datetime).order_by('start_datetime')
     categories = EventCategory.objects.all()
@@ -94,7 +99,7 @@ def event_create(request):
             return redirect('event_list')
     else:
         form = EventForm()
-    return render(request, 'events/event_form.html', {'form': form})
+    return render(request, 'announcement/event_form.html', {'form': form})
 
 
 @user_passes_test(is_superuser)
@@ -107,7 +112,7 @@ def event_update(request, pk):
             return redirect('event_list')
     else:
         form = EventForm(instance=event)
-    return render(request, 'events/event_form.html', {'form': form})
+    return render(request, 'announcement/event_form.html', {'form': form})
 
 
 @user_passes_test(is_superuser)
@@ -116,5 +121,5 @@ def event_delete(request, pk):
     if request.method == 'POST':
         event.delete()
         return redirect('event_list')
-    return render(request, 'events/event_confirm_delete.html', {'event': event})
+    return render(request, 'announcement/event_confirm_delete.html', {'event': event})
 

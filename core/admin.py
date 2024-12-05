@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Event, EventCategory, TeamMember, BoardMember
-
+from .models import Event, EventCategory, TeamMember, BoardMember, Announcement, NewsArticle
 
 # Register your models here
 admin.site.site_header = 'Benites Ministries'
@@ -12,3 +11,5 @@ admin.site.register(EventCategory)
 admin.site.register(Event)
 admin.site.register(TeamMember)
 admin.site.register(BoardMember)
+admin.site.register(Announcement)
+admin.site.register(NewsArticle)

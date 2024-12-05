@@ -10,8 +10,8 @@ urlpatterns = [
     path('service/', views.service, name='service'),
     path('event/', views.event_list, name='event_list'),
     path('event/<int:pk>/', views.event_detail, name='event_detail'),
-    path('events/create/', views.event_create, name='event_create'),
-    path('events/<int:pk>/update/', views.event_update, name='event_update'),
-    path('events/<int:pk>/delete/', views.event_delete, name='event_delete'),
+    path('announcement/create/', views.event_create, name='event_create'),
+    path('announcement/<int:pk>/update/', views.event_update, name='event_update'),
+    path('announcement/<int:pk>/delete/', views.event_delete, name='event_delete'),
 
 ]

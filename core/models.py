@@ -15,7 +15,7 @@ class EventCategory(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='event_images/', null=True, blank=True)  # Make the field nullable
+    image = models.ImageField(upload_to='event_images/')
     description = models.TextField(blank=True)
     start_datetime = models.DateTimeField()
     end_datetime = models.DateTimeField()
@@ -51,7 +51,7 @@ class TeamMember(models.Model):
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     bio = models.TextField()
     specialty = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='media/team/')
+    image = models.ImageField(upload_to='team/')
 
     # Social media links
     facebook = models.URLField(blank=True, null=True)
@@ -110,3 +110,49 @@ class BoardMember(models.Model):
             'facebook': self.facebook,
             'tiktok': self.tiktok,
         }
+
+
+class Announcement(models.Model):
+    ANNOUNCEMENT_TYPES = [
+        ('featured', 'Featured Event'),
+        ('upcoming', 'Upcoming Event'),
+        ('special', 'Special Event'),
+    ]
+
+    title = models.CharField(max_length=200)
+    event_type = models.CharField(max_length=20, choices=ANNOUNCEMENT_TYPES)
+    date = models.DateField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
+    description = models.TextField()
+    image = models.ImageField(upload_to='announcements/', null=True, blank=True)
+    video = models.FileField(upload_to='announcements/', null=True, blank=True)
+    button_text = models.CharField(max_length=50, default='More Info')
+    button_link = models.URLField(blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-date']
+
+
+class NewsArticle(models.Model):
+    ARTICLE_TYPES = [
+        ('news', 'News'),
+        ('update', 'Update'),
+        ('event', 'Event'),
+    ]
+
+    title = models.CharField(max_length=200)
+    article_type = models.CharField(max_length=20, choices=ARTICLE_TYPES)
+    date = models.DateField(null=True, blank=True)
+    description = models.TextField()
+    image = models.ImageField(upload_to='news/', null=True, blank=True)
+    video = models.FileField(upload_to='news/', null=True, blank=True)
+    read_more_link = models.URLField(blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-date']
