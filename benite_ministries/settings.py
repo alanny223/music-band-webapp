@@ -24,13 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4#bgikmm91kz1%e39e((^&uwn_%vni(f(#xai@+qy!44a=ax@@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#
-# ALLOWED_HOSTS = [
-#     'benitesministries.org',
-#     'www.benitesministries.org',
-#     '162.243.69.165',
-# ]
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    'benitesministries.org',
+    'www.benitesministries.org',
+    '162.243.69.165',
+]
 
 # Application definition
 
