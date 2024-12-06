@@ -200,89 +200,145 @@
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
         }
+
+  @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+
+        .typing-animation {
+            overflow: hidden;
+            border-right: .15em solid white;
+            white-space: nowrap;
+            animation:
+                typing 3s steps(40, end) forwards,
+                blink-caret .75s step-end 3 forwards;
+        }
+
+        .typing-animation::after {
+            content: '';
+            border-right: .15em solid transparent;
+            animation: none;
+        }
+
+        .bg-gradient-hero {
+            background: linear-gradient(135deg, #0F172A, #1E293B, #1D4ED8);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 640px) {
+            .typing-animation {
+                font-size: 2.5rem;
+            }
+        }
 </style>
 
 <!-- Hero Section -->
-<section class="min-h-screen flex items-center justify-center relative bg-gray-900 overflow-hidden">
-    <div class="absolute inset-0">
-        <img src="/static/media/logos/gospel 2.jpeg" alt="Band performing" class="w-full h-full object-cover opacity-50">
-    </div>
-    <div class="hero-content relative z-10 text-center px-6">
-        <h1 class="text-6xl md:text-8xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-            The Benites Ministries
-        </h1>
-        <p class="text-xl text-white md:text-xl mb-8">Discover gospel music that celebrates faith, love and hope</p>
 
-        <div class="flex gap-4 justify-center">
-            <a href="/about/" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-3 rounded-full transition-all hover:from-blue-700 hover:to-purple-700 flex items-center">
-                <i class="fas fa-info-circle mr-2"></i> Learn more
-            </a>
-            <a href="/event/" class="border-2 border-white text-white px-8 py-3 rounded-full transition-all hover:bg-white hover:text-gray-900 flex items-center">
-                <i class="fas fa-calendar-alt mr-2"></i> Our events
-            </a>
-        </div>
-    </div>
-</section>
+    <section class="min-h-screen flex items-center justify-center relative bg-gradient-hero overflow-hidden">
+        <div class="hero-content text-center px-4 py-12 w-full max-w-4xl">
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-bold mb-4 text-white typing-animation">
+                Les Benites
+            </h1>
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-bold mb-4 text-white typing-animation">
+                Ministries Int'l
+            </h1>
+            <p class="text-gray-200 sm:text-xl md:text-2xl mb-8 animate-fade-in opacity-0 delay-500 px-4">
+                Discover gospel music that celebrates faith, love and hope
+            </p>
 
-
-<section class="container mx-auto px-4 py-20 relative overflow-hidden">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute w-96 h-96 bg-blue-200/30 rounded-full blur-3xl -top-10 -left-10 animate-pulse"></div>
-            <div class="absolute w-96 h-96 bg-purple-200/30 rounded-full blur-3xl -bottom-10 -right-10 animate-pulse delay-1000"></div>
-        </div>
-
-        <div class="max-w-4xl mx-auto relative z-10">
-            <div class="text-center mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
-                <h2 class="text-5xl md:text-6xl font-bold text-blue-700 mb-6">
-                    Who We Are
-                </h2>
-                <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-6"></div>
-                <p class="text-gray-600 text-xl max-w-2xl mx-auto">
-                    A dynamic ministry dedicated to touching hearts and uplifting souls through the transformative power of music and worship.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white/70 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-blue-100 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="mb-6 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-blue-700 text-center mb-4">
-                        The Benites Voices
-                    </h3>
-                    <p class="text-gray-600 text-center">
-                        Our worship team comprises young authors, composers, musicians, publishers, producers, arrangers, and artists dedicated to creating transformative musical experiences.
-                    </p>
-                </div>
-
-                <div class="bg-white/70 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-blue-100 opacity-0 animate-fade-in-up" style="animation-delay: 0.6s;">
-                    <div class="mb-6 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-blue-700 text-center mb-4">
-                        The Benites Universal Record
-                    </h3>
-                    <p class="text-gray-600 text-center">
-                        Our dedicated music production label brings worship to life through professional recording, production, and innovative musical storytelling.
-                    </p>
-                </div>
-            </div>
-
-            <div class="text-center mt-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s;">
-                <a href="/about" class="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-800 rounded-full hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl group">
-                    Learn More About Us
-                    <svg class="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
+            <div class="flex flex-wrap justify-center gap-4 animate-fade-in opacity-0 delay-1000">
+                <a href="/about/" class="bg-white text-blue-900 px-6 sm:px-8 py-3 rounded-full transition-all duration-300 hover:bg-transparent hover:text-white hover:border-2 border-white hover:scale-105 flex items-center shadow-lg text-sm sm:text-base">
+                    <i class="fas fa-info-circle mr-2"></i> Learn more
+                </a>
+                <a href="/event/" class="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-blue-800 flex items-center hover:scale-105 text-sm sm:text-base">
+                    <i class="fas fa-calendar-alt mr-2"></i> Our events
                 </a>
             </div>
         </div>
     </section>
+
+
+<section class="container mx-auto px-4 py-20 relative overflow-hidden">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute w-96 h-96 bg-blue-200/30 rounded-full blur-3xl -top-10 -left-10 animate-pulse"></div>
+    <div class="absolute w-96 h-96 bg-purple-200/30 rounded-full blur-3xl -bottom-10 -right-10 animate-pulse delay-1000"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="text-center mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+      <h2 class="text-5xl md:text-6xl font-bold text-blue-700 mb-6">
+        Who We Are
+      </h2>
+      <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-6"></div>
+      <p class="text-gray-600 text-xl max-w-2xl mx-auto">
+        A dynamic ministry dedicated to touching hearts and uplifting souls through the transformative power of music and worship.
+      </p>
+    </div>
+
+    <!-- Our Partners Logos -->
+    <div class="flex justify-center">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
+        <div class="bg-white shadow-md rounded-lg overflow-hidden partner-card w-90">
+          <div class="relative h-64">
+            <img src="/static/images/logos/records.jpg" alt="Benites Universal Records" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 partner-card-overlay">
+              <h3 class="text-white text-2xl font-bold">Benites Universal Records</h3>
+            </div>
+          </div>
+          <div class="p-2">
+            <h3 class="text-lg font-bold text-blue-700 mb-1">Benites Universal Records</h3>
+            <p class="text-gray-900 text-m">Our dedicated music production label brings worship to life through professional recording, production, and innovative musical storytelling.</p>
+          </div>
+        </div>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden partner-card w-90">
+          <div class="relative h-64">
+            <img src="/static/images/logos/logo.jpg" alt="The Benites Voices" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 partner-card-overlay">
+              <h3 class="text-white text-2xl font-bold">The Benites Voices</h3>
+            </div>
+          </div>
+          <div class="p-2">
+            <h3 class="text-lg font-bold text-blue-700 mb-1">The Benites Voices</h3>
+            <p class="text-gray-900 text-m">Our worship team comprises young authors, composers, musicians, publishers, producers, arrangers, and artists dedicated to creating transformative musical experiences.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s;">
+      <a href="/about" class="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-800 rounded-full hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl group">
+        Learn More About Us
+        <svg class="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- Features Section -->
 <section class="relative bg-gradient-to-b from-white via-blue-50 to-white py-24 overflow-hidden">
@@ -306,13 +362,13 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
       <!-- Live Performances Card -->
       <div class="feature-card group" data-aos="fade-up" data-aos-delay="100">
-        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-50 shadow-lg hover:shadow-2xl transition-shadow duration-500 p-1">
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-100 shadow-lg hover:shadow-2xl transition-shadow duration-500 p-1">
           <div class="absolute inset-0 bg-gradient-to-br from-blue-100/50 to-purple-100/50 transform group-hover:scale-105 transition-transform duration-500"></div>
           <div class="relative p-6 h-full">
-            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-              </svg>
+            <div class="w-14 h-14 bg-gradient-to-br from-blue-600 to-purple-300 rounded-xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+               </svg>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-4">Live Performances</h3>
             <p class="text-gray-600 mb-6">Elevate your event with our dynamic live performances, bringing energy and passion to every stage.</p>
@@ -331,10 +387,10 @@
         <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-50 shadow-lg hover:shadow-2xl transition-shadow duration-500 p-1">
           <div class="absolute inset-0 bg-gradient-to-br from-blue-100/50 to-purple-100/50 transform group-hover:scale-105 transition-transform duration-500"></div>
           <div class="relative p-6 h-full">
-            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-              </svg>
+            <div class="w-14 h-14 bg-gradient-to-br from-blue-600 to-purple-300 rounded-xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                </svg>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-4">Music Production</h3>
             <p class="text-gray-600 mb-6">Professional studio production services to bring your musical vision to life with pristine quality.</p>
@@ -347,13 +403,12 @@
           </div>
         </div>
       </div>
-
       <!-- Music Education Card -->
       <div class="feature-card group" data-aos="fade-up" data-aos-delay="300">
         <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-50 shadow-lg hover:shadow-2xl transition-shadow duration-500 p-1">
           <div class="absolute inset-0 bg-gradient-to-br from-blue-100/50 to-purple-100/50 transform group-hover:scale-105 transition-transform duration-500"></div>
           <div class="relative p-6 h-full">
-            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+            <div class="w-14 h-14 bg-gradient-to-br from-blue-600 to-purple-300 rounded-xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
               </svg>
@@ -388,17 +443,17 @@
 <section id="events" class="py-20 bg-gradient-to-b from-white via-blue-50 to-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
-        <div class="text-center mb-16 relative">
-            <div class="floating-icon absolute left-1/2 -translate-x-1/2 -top-10">
+        <div class="text-center mb-16 relative flex flex-col items-center">
+            <div class="absolute -top-10 left-1/2 transform -translate-x-1/2">
                 <i class="fas fa-calendar-alt text-5xl text-blue-600 opacity-80"></i>
             </div>
             <h2 class="text-5xl font-bold mb-4">
                 <span class="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                    Activities Announcements
+                    Upcoming Events
                 </span>
             </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto mb-6"></div>
-            <p class="text-primary max-w-2xl mx-auto text-lg">
+            <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mb-6"></div>
+            <p class="text-primary max-w-2xl text-center text-lg">
                 Join us for soul-stirring performances, uplifting worship, and unforgettable moments of praise
             </p>
         </div>
@@ -466,7 +521,7 @@
     <!-- View All Announcements Button -->
     <div class="mt-16 text-center">
         <a href="/event/" class="services-button inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-800 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden group">
-            <span class="relative z-10">View All Upcoming Activities</span>
+            <span class="relative z-10">View All Events</span>
             <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-2 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
@@ -476,7 +531,7 @@
 
 
 <!--News and Articles section-->
-  <section class="py-24 bg-gradient-to-b from-white via-gray-100 to-white relative overflow-hidden">
+  <section class="py-24 bg-gradient-to-b from-white via-blue-50 to-white relative overflow-hidden">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'30\' height=\'30\' viewBox=\'0 0 30 30\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z\' fill=\'rgba(0,0,0,0.8)\'/%3E%3C/svg%3E')"></div>
 
@@ -558,9 +613,9 @@
     </div>
   </section>
 
-<!--Contact section-->
 
-<section class="py-16 bg-gradient-to-r from-indigo-600 to-purple-600">
+<!--Contact section-->
+<section class="py-16 bg-gradient-to-b from-white via-blue-50 to-white">
 <!--    <section class="py-16 bg-gradient-to-r from-sky-600 to-cyan-400">-->
   <div class="container mx-auto px-4">
     <div class="bg-white rounded-lg shadow-xl max-w-4xl mx-auto overflow-hidden">
@@ -785,6 +840,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+     const partnerCards = document.querySelectorAll('.partner-card');
+
+    partnerCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        anime({
+          targets: '.partner-card-overlay',
+          opacity: 1,
+          duration: 300,
+          easing: 'easeInOutQuad'
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        anime({
+          targets: '.partner-card-overlay',
+          opacity: 0,
+          duration: 300,
+          easing: 'easeInOutQuad'
+        });
+      });
+    });
 </script>
 
 {% endblock %}
