@@ -7,8 +7,7 @@ admin.site.site_title = 'Benites Ministries International'
 admin.site.index_title = 'Dashboard'
 
 
-admin.site.register(EventCategory)
-admin.site.register(Event)
+
 admin.site.register(TeamMember)
 admin.site.register(BoardMember)
 admin.site.register(Announcement)

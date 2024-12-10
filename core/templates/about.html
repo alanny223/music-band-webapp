@@ -184,7 +184,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="relative group">
                     <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl transform rotate-6 group-hover:rotate-12 transition-transform duration-300"></div>
-                    <img src="/static/media/leadership/meli.jpg" alt="Meli Angel Jerusalem" class="relative rounded-xl shadow-2xl w-full object-cover aspect-square">
+                    <img src="/static/images/leadership/meli.jpg" alt="Meli Angel Jerusalem" class="relative rounded-xl shadow-2xl w-full object-cover aspect-square">
                 </div>
                     <div class="space-y-6">
                         <h3 class="text-3xl font-bold gradient-text">Jerusalem Angel</h3>
@@ -267,7 +267,7 @@
         {
             name: 'Daniel Ondogo',
             role: 'VOCAL COACH',
-            image: '/static/media/leadership/coach dani.jpg',
+            image: '/static/images/leadership/coach dani.jpg',
             bio: 'Expert in vocal technique and artist development.',
             social: {
                 linkedin: '#',
@@ -560,118 +560,122 @@
         </div>
     </section>
 
-<!--team-->
-<section class="py-20 px-4 min-h-screen"
-    x-data="{
-        members: JSON.parse('{{ team_members|escapejs }}'),
-        currentIndex: 0,
-        currentCategory: 'all',
-        get filteredMembers() {
-            return this.currentCategory === 'all'
-                ? this.members
-                : this.members.filter(m => m.category === this.currentCategory);
-        }
-    }">
-    <div class="max-w-5xl mx-auto"> <!-- Changed from max-w-7xl to max-w-5xl -->
-        <!-- Animated Header -->
-        <div class="text-center mb-8"> <!-- Reduced margin bottom -->
-            <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-blue-100 rounded-full blur-3xl opacity-70"></span>
-            <h2 class="text-3xl md:text-4xl font-bold mb-3 gradient-text relative"> <!-- Adjusted text size and margin -->
-                Meet Our Talented Team
-            </h2>
-            <p class="text-gray-600 text-sm md:text-base max-w-xl mx-auto leading-relaxed"> <!-- Reduced max width -->
-                Discover the exceptional individuals who bring their passion and expertise to create extraordinary music
-            </p>
-        </div>
+   <section
+        x-data="teamSection()"
+        class="py-20 px-4 min-h-screen"
+    >
+        <div class="max-w-5xl mx-auto">
+            <!-- Animated Header -->
+            <div class="text-center mb-8 relative">
+                <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-blue-100 rounded-full blur-3xl opacity-70"></span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3 gradient-text relative">
+                    Meet Our Talented Team
+                </h2>
+                <p class="text-gray-600 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                    Discover the exceptional individuals who bring their passion and expertise to create extraordinary music
+                </p>
+            </div>
 
-        <!-- Enhanced Category Filter -->
-        <div class="flex flex-wrap justify-center gap-2 mb-8"> <!-- Reduced gap and margin -->
-            <template x-for="category in ['all', 'pianists', 'singers', 'bassists', 'guitarist', 'drummer']">
+            <!-- Category Filter -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <template x-for="category in categories" :key="category">
+                    <button
+                        @click="currentCategory = category; currentIndex = 0"
+                        :class="{
+                            'bg-gradient-to-r from-blue-600 to-indigo-600 text-white': currentCategory === category,
+                            'bg-white text-gray-700': currentCategory !== category
+                        }"
+                        class="px-4 py-1.5 rounded-full custom-shadow hover-lift font-medium text-xs md:text-sm uppercase tracking-wider"
+                    >
+                        <span x-text="category === 'all' ? 'All' : category.charAt(0).toUpperCase() + category.slice(1)"></span>
+                    </button>
+                </template>
+            </div>
+
+            <!-- Carousel -->
+            <div class="relative rounded-2xl overflow-hidden custom-shadow bg-white">
+                <!-- Navigation Buttons -->
                 <button
-                    @click="currentCategory = category; currentIndex = 0"
-                    :class="{
-                        'bg-gradient-to-r from-blue-600 to-indigo-600 text-white': currentCategory === category,
-                        'bg-white text-gray-700': currentCategory !== category
-                    }"
-                    class="px-4 py-1.5 rounded-full custom-shadow hover-lift font-medium text-xs md:text-sm uppercase tracking-wider"> <!-- Adjusted padding and text size -->
-                    <span x-text="category === 'all' ? 'All' : category.charAt(0).toUpperCase() + category.slice(1)"></span>
+                    @click="prevMember()"
+                    class="absolute left-2 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full glass-effect hover-lift"
+                >
+                    <i class="fas fa-chevron-left text-blue-600 text-base"></i>
                 </button>
-            </template>
-        </div>
+                <button
+                    @click="nextMember()"
+                    class="absolute right-2 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full glass-effect hover-lift"
+                >
+                    <i class="fas fa-chevron-right text-blue-600 text-base"></i>
+                </button>
 
-        <!-- Carousel -->
-        <div class="relative rounded-2xl overflow-hidden custom-shadow bg-white"> <!-- Reduced border radius -->
-            <!-- Navigation Buttons -->
-            <button
-                @click="currentIndex = (currentIndex - 1 + filteredMembers.length) % filteredMembers.length"
-                class="absolute left-2 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full glass-effect hover-lift"> <!-- Adjusted size and position -->
-                <i class="fas fa-chevron-left text-blue-600 text-base"></i>
-            </button>
-            <button
-                @click="currentIndex = (currentIndex + 1) % filteredMembers.length"
-                class="absolute right-2 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full glass-effect hover-lift"> <!-- Adjusted size and position -->
-                <i class="fas fa-chevron-right text-blue-600 text-base"></i>
-            </button>
-
-            <!-- Member Cards -->
-            <div class="relative w-full">
-                <template x-for="(member, index) in filteredMembers" :key="index">
-                    <div
-                        x-show="currentIndex === index"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform translate-x-full"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        x-transition:leave="transition ease-in duration-300"
-                        x-transition:leave-start="opacity-100 transform translate-x-0"
-                        x-transition:leave-end="opacity-0 transform -translate-x-full"
-                        class="w-full">
-                        <div class="flex flex-col md:flex-row md:h-[400px]"> <!-- Added fixed height for larger screens -->
-                            <div class="w-full md:w-2/5 relative overflow-hidden bg-gray-100">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                                <img
-                                    :src="member.image"
-                                    :alt="member.name"
-                                    class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-110">
-                            </div>
-                            <div class="w-full md:w-3/5 p-4 md:p-6 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white"> <!-- Adjusted padding -->
-                                <h3 class="text-xl md:text-2xl font-bold mb-2 text-gradient" x-text="member.name"></h3>
-                                <p class="text-blue-600 font-semibold text-m md:text-base mb-2" x-text="member.role"></p>
-                                <p class="text-gray-600 text-s md:text-m mb-3 leading-relaxed" x-text="member.bio"></p>
-                                <div class="mb-3"> <!-- Reduced margin -->
-                                    <p class="text-gray-800 font-medium text-s md:text-sm">Specialty:</p>
-                                    <p class="text-blue-600 italic text-s md:text-m" x-text="member.specialty"></p>
+                <!-- Member Cards -->
+                <div class="relative w-full">
+                    <template x-for="(member, index) in filteredMembers" :key="index">
+                        <div
+                            x-show="currentIndex === index"
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 transform translate-x-full"
+                            x-transition:enter-end="opacity-100 transform translate-x-0"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 transform translate-x-0"
+                            x-transition:leave-end="opacity-0 transform -translate-x-full"
+                            class="w-full"
+                        >
+                            <div class="flex flex-col md:flex-row md:h-[400px]">
+                                <div class="w-full md:w-2/5 relative overflow-hidden bg-gray-100">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                    <img
+                                        :src="member.image"
+                                        :alt="member.name"
+                                        class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-110"
+                                    >
                                 </div>
-                                <div class="flex space-x-3"> <!-- Reduced spacing -->
-                                    <template x-for="(url, platform) in member.social" :key="platform">
-                                        <a x-show="url !== '#'" :href="url" class="social-icon" :class="`text-${platform}-600`">
-                                            <i :class="`fab fa-${platform} text-base md:text-lg`"></i>
-                                        </a>
-                                    </template>
+                                <div class="w-full md:w-3/5 p-4 md:p-6 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white">
+                                    <h3 class="text-xl md:text-2xl font-bold mb-2 text-gradient" x-text="member.name"></h3>
+                                    <p class="text-blue-600 font-semibold text-m md:text-base mb-2" x-text="member.role"></p>
+                                    <p class="text-gray-600 text-s md:text-m mb-3 leading-relaxed" x-text="member.bio"></p>
+                                    <div class="mb-3">
+                                        <p class="text-gray-800 font-medium text-s md:text-sm">Specialty:</p>
+                                        <p class="text-blue-600 italic text-s md:text-m" x-text="member.specialty"></p>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <template x-for="(url, platform) in member.social" :key="platform">
+                                            <a
+                                                x-show="url && url !== '#'"
+                                                :href="url"
+                                                target="_blank"
+                                                class="social-icon transition-colors duration-300 hover:text-blue-700"
+                                                :class="`text-${platform}-600`"
+                                            >
+                                                <i :class="`fab fa-${platform} text-base md:text-lg`"></i>
+                                            </a>
+                                        </template>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-4 gap-1.5">
+                <template x-for="(_, index) in filteredMembers" :key="index">
+                    <button
+                        @click="currentIndex = index"
+                        class="w-1.5 h-1.5 rounded-full transition-all duration-300 hover-lift"
+                        :class="currentIndex === index
+                            ? 'bg-gradient-to-r from-blue-600 to-indigo-600 scale-125 shadow-lg'
+                            : 'bg-gray-300 hover:bg-blue-400'"
+                    >
+                    </button>
                 </template>
             </div>
         </div>
-
-        <!-- Pagination -->
-        <div class="flex justify-center mt-4 gap-1.5"> <!-- Reduced margin and gap -->
-            <template x-for="(_, index) in filteredMembers" :key="index">
-                <button
-                    @click="currentIndex = index"
-                    class="w-1.5 h-1.5 rounded-full transition-all duration-300 hover-lift"
-                    :class="currentIndex === index
-                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 scale-125 shadow-lg'
-                        : 'bg-gray-300 hover:bg-blue-400'">
-                </button>
-            </template>
-        </div>
-    </div>
-</section>
+    </section>
 
 <style>
-/* Animations */
+    /* 1. Animation Keyframes */
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
@@ -679,31 +683,62 @@
 }
 
 @keyframes slideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 @keyframes slideOutLeft {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(-100%); opacity: 0; }
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 }
 
-/* General Styles */
-.glass-effect {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.8);
+@keyframes dotPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
 }
 
+/* 2. Text and Gradient Styles */
 .text-gradient {
     background: linear-gradient(135deg, #3B82F6, #8B5CF6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+.gradient-text {
+    background: linear-gradient(to right, #3b82f6, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 3. UI Effects and Shadows */
+.glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+}
+
 .custom-shadow {
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
 }
 
+/* 4. Hover and Interaction Styles */
 .social-icon {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -721,84 +756,347 @@
     transform: translateY(-2px);
 }
 
-.slide-enter { animation: slideInRight 0.6s ease-out; }
-.slide-leave { animation: slideOutLeft 0.6s ease-in; }
+/* 5. Animation Classes */
+.slide-enter {
+    animation: slideInRight 0.6s ease-out;
+}
 
-     .timeline-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .timeline-card:hover {
-            transform: translateX(8px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        .dot-pulse {
-            position: relative;
-            animation: dotPulse 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
-        }
-        @keyframes dotPulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.5);
-                opacity: 0.5;
-            }
-        }
-        .progress-line {
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+.slide-leave {
+    animation: slideOutLeft 0.6s ease-in;
+}
+
+/* 6. Timeline and Interactive Elements */
+.timeline-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dot-pulse {
+    position: relative;
+    animation: dotPulse 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+.progress-line {
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
 </style>
-    <script>
-  // Initialize GSAP ScrollTrigger
-  gsap.registerPlugin(ScrollTrigger);
 
-  // Animate sections on scroll
-  gsap.utils.toArray('section').forEach(section => {
-      gsap.from(section, {
-          opacity: 0,
-          y: 50,
-          duration: 1,
-          scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              end: "top 20%",
-              toggleActions: "play none none reverse"
-          }
-      });
-  });
-
-</script>
-
+    <!-- Add your custom CSS and JavaScript here -->
 <script>
-        gsap.registerPlugin(ScrollTrigger);
+// Team Section Management
+function teamSection() {
+    return {
+        // Team Member Data Structure
+        members: [
+            {
+                name: 'Martial MENDOGO',
+                role: 'Bassist & Bandleader',
+                category: 'bassists',
+                image: '/static/images/leadership/bona b.jpg',
+                bio: 'The heartbeat of the band, he combines dynamic grooves with visionary leadership, driving every performance to new heights.',
+                specialty: 'Master of rhythm and harmony',
+                social: {
+                    facebook: 'https://web.facebook.com/profile.php?id=100087044025795',
+                    instagram: '#',
+                    linkedin: '#'
+               }
+            },
 
-        function initAnimations() {
-            // Animate cards and progress lines on scroll
-            gsap.utils.toArray('.timeline-card').forEach((card, index) => {
-                // Initial state
-                gsap.set(card, {
-                    opacity: 0,
-                    x: -30
-                });
+            {
+                name: 'Perez Benites',
+                role: 'Bassist',
+                category: 'bassists',
+                image: '/static/images/team/perez ori.jpg',
+                bio: 'A skilled bassist with a passion for creating deep, rhythmic foundations, bringing energy and groove to every performance.',
+                specialty: 'excels in creating powerful, groove-driven basslines',
+                social: {
+                    facebook: 'https://web.facebook.com/profile.php?id=100068780655410',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
 
-                // Animate card entrance
-                gsap.to(card, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 80%",
-                        end: "top 60%",
-                        toggleActions: "play none none reverse"
-                    },
-                    duration: 0.6,
-                    opacity: 1,
-                    x: 0,
-                    ease: "power2.out",
-                    delay: index * 0.15
-                });
+             {
+                name: 'Anatole',
+                role: 'Rhythm Guitarist',
+                category: 'guitarist',
+                image: '/static/images/team/anatole_2.jpg',
+                bio: 'Passionate musician with 20 years of experience in music.',
+                specialty: 'Expert in crafting smooth, rhythmic patterns, Versatile across genres',
+                social: {
+                    facebook: 'https://web.facebook.com/desireanatole.essindimbarga',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
 
-                // Animate progress line
-                const progressLine = card.querySelector('.progress-line');
+              {
+                name: 'Mohamed',
+                role: 'Lead Guitarist',
+                category: 'guitarist',
+                image: '/static/images/team/Mohamed .jpg',
+                bio: 'Passionate musician with 10 years of experience in rock music.',
+                specialty: 'Electric Guitar Solos',
+                social: {
+                    facebook: 'https://web.facebook.com/profile.php?id=100093376500238',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+          {
+                name: 'Caleb Benites',
+                role: 'Drummer',
+                category: 'drummer',
+                image: '/static/images/team/caleb.jpg',
+                bio: 'The driving force behind the beat, he delivers dynamic rhythms and unmatched energy to every performance.',
+                specialty: 'dynamic grooves, proficient in advanced drumming techniques',
+                social: {
+                    facebook: 'https://web.facebook.com/calebcalio',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+
+            {
+                name: 'Marilou Benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/mama_marilou.jpg',
+                bio: 'her voice delivers divine inspiration, bringing the gospel message alive through every performance',
+                specialty: 'Vocal Dynamics, Songwriting',
+                social: {
+                    facebook: 'https://web.facebook.com/profile.php?id=100034763860402',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+            {
+                name: 'Esther Benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/esther.jpg',
+                bio: 'Blending passion and devotion, she uses her voice to uplift and inspire through gospel music.',
+                specialty: 'Perfect Pitch, Anointing',
+                social: {
+                    facebook: 'https://web.facebook.com/esthy.ngobii',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+  {
+                name: 'Dabe Unity benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/unity1.jpg',
+                bio: 'With a voice full of power and grace, she delivers gospel music that inspires and moves souls.',
+                specialty: 'Powerful Vocal Range, Stage Presence',
+                social: {
+                    facebook: 'https://web.facebook.com/unity.dabe',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+            {
+                name: 'Beautrel Benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/beautrel 2.jpg',
+                bio: 'Bringing the word of God to life through music, he delivers heartfelt performances that resonate deeply.',
+                specialty: 'Soulful Delivery, Collaborative Spirit',
+                social: {
+                    facebook: 'https://web.facebook.com/beautrel.manimben.9',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+
+            {
+                name: 'Nael Benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/nael.jpg',
+                bio: 'With every note, he spreads love, hope, and faith, creating gospel music that moves the soul.',
+                specialty: 'Emotional Expression, Improvisation',
+                social: {
+                    facebook: 'https://web.facebook.com/jordi.pondy',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+{
+                name: 'Anicet Benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/anicet.jpg',
+                bio: ' his voice delivers divine inspiration, bringing the gospel message alive through every performance.',
+                specialty: 'Versatility, Musical Interpretation',
+                social: {
+                    facebook: 'https://web.facebook.com/anicestar.obam.3',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+            {
+                name: 'Mike Benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/mike.jpg',
+                bio: 'A voice of faith and strength, who brings gospel music that touches lives and lifts spirits.',
+                specialty: 'Breath Control , Harmonization, Collaborative Spirit',
+                social: {
+                    facebook: 'https://web.facebook.com/profile.php?id=100092377668303',
+                    instagram: '#', // Will not be displayed
+                    linkedin: ''
+                }
+            },
+
+ {
+                name: 'Junior Benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/junior.jpg',
+                bio: 'A voice that speaks to the soul, he brings the gospel message to life with every powerful note.',
+                specialty: 'Musical Interpretation, Vocal Dynamics',
+                social: {
+                    facebook: 'https://web.facebook.com/profile.php?id=100073072791793',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+            {
+                name: 'Zacharie Benites',
+                role: 'Singer',
+                category: 'singers',
+                image: '/static/images/team/zacharie.jpg',
+                bio: 'With a voice that carries the gospel’s light, he spreads joy and hope through their powerful songs.',
+                specialty: 'Vocal Projection, Anointing',
+                social: {
+                    facebook: 'https://web.facebook.com/zacharie.awameyong',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+             {
+                name: 'Jordan Benites',
+                role: 'Pianist',
+                category: 'pianists',
+                image: '/static/images/team/jordan.jpg',
+                bio: 'ith a passion for music and a deft touch on the keys, he creates captivating performances that resonate deeply with audiences.',
+                specialty: 'Finger Dexterity, Emotional Connection, Impeccable Technique',
+                social: {
+                    facebook: 'https://web.facebook.com/profile.php?id=61567875043949',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            },
+
+
+            {
+                name: 'Paul Benites',
+                role: 'Pianist',
+                category: 'pianists',
+                image: '/static/images/team/paulo.jpg',
+                bio: 'A master of melody and harmony, he brings depth and emotion to every key, creating unforgettable musical experiences.',
+                specialty: 'Versatile Playing, Expressive Interpretation, Pedal Control, Innovative Arrangements',
+                social: {
+                    facebook: 'https://web.facebook.com/paulo.nyoum',
+                    instagram: '#', // Will not be displayed
+                    linkedin: '#'
+                }
+            }
+            // Add more members here
+        ],
+
+        // State Management
+        currentIndex: 0,
+        currentCategory: 'all',
+        categories: ['all', 'pianists', 'singers', 'bassists', 'guitarist', 'drummer'],
+
+        // Computed Property for Filtered Members
+        get filteredMembers() {
+            return this.currentCategory === 'all'
+                ? this.members
+                : this.members.filter(m => m.category === this.currentCategory);
+        },
+
+        // Navigation Methods
+        nextMember() {
+            this.currentIndex = (this.currentIndex + 1) % this.filteredMembers.length;
+        },
+
+        prevMember() {
+            this.currentIndex = (this.currentIndex - 1 + this.filteredMembers.length) % this.filteredMembers.length;
+        }
+    };
+}
+
+// Scroll-Triggered Animations Manager
+function createScrollAnimations() {
+    // Ensure GSAP and ScrollTrigger are loaded
+    if (typeof gsap === 'undefined' || !gsap.registerPlugin) {
+        console.error('GSAP or ScrollTrigger plugin not loaded');
+        return;
+    }
+
+    // Register ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Section Scroll Animations
+    function animateSections() {
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    end: "top 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    }
+
+    // Timeline Card Animations
+    function animateTimelineCards() {
+        gsap.utils.toArray('.timeline-card').forEach((card, index) => {
+            // Card Entrance Animation
+            gsap.set(card, {
+                opacity: 0,
+                x: -30
+            });
+
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    end: "top 60%",
+                    toggleActions: "play none none reverse"
+                },
+                duration: 0.6,
+                opacity: 1,
+                x: 0,
+                ease: "power2.out",
+                delay: index * 0.15
+            });
+
+            // Progress Line Animation
+            const progressLine = card.querySelector('.progress-line');
+            if (progressLine) {
                 gsap.to(progressLine, {
                     scrollTrigger: {
                         trigger: card,
@@ -811,10 +1109,34 @@
                     ease: "power2.inOut",
                     delay: index * 0.15 + 0.3
                 });
-            });
-        }
+            }
+        });
+    }
 
-        window.addEventListener('load', initAnimations);
-    </script>
-    <!-- Add your custom CSS and JavaScript here -->
+    // Initialize All Animations
+    function initAnimations() {
+        animateSections();
+        animateTimelineCards();
+    }
+
+    // Attach to window load event
+    window.addEventListener('load', initAnimations);
+
+    // Return methods for potential manual control
+    return {
+        animateSections,
+        animateTimelineCards,
+        initAnimations
+    };
+}
+
+// Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Team Section
+    const teamSection = createTeamSectionManager();
+
+    // Initialize Scroll Animations
+    const scrollAnimations = createScrollAnimations();
+});
+</script>
 {% endblock %}
